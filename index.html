@@ -1,81 +1,78 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta nama="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Request via Email</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Fitur</title>
     <style>
-        :root {
-          --kenzz: #04ffec;
-          --kenzdev: #0497ff;
-          --kenzcreator: #002afa;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
         body {
-            font-family: 'Poppins', sans-serif;
-            background: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
+            background-color: #f4f4f4;
         }
         .container {
+            width: 90%;
+            max-width: 400px;
             background: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-            width: 200%;
-            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
         }
         input, textarea {
-            width: 96%;
+            width: 100%;
             padding: 10px;
-            margin-top: 10px;
+            margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 16px;
         }
         button {
-            width: 102%;
+            width: 100%;
             padding: 10px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        button {
-            background: var(--kenzcreator);
+            background: blue;
             color: white;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            transition: background 0.3s;
         }
         button:hover {
-            background: var(--kenzdev);
-            transform: scale(1.1);
+            background: darkblue;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Request Fitur</h2>
-        <input type="text" id="nama" placeholder="Nama" required>
-        <input type="email" id="imel" placeholder="Email" required>
-        <textarea id="pesan" placeholder="Pesan" required></textarea>
-        <button onclick="sendEmail()">Kirim</button>
-    </div><script>
-    function sendEmail() {
-        const nama = document.getElementById('nama').value;
-        const imel = document.getElementById('imel').value;
-        const pesan = document.getElementById('pesan').value;
-        
-        if (!nama || !imel || !pesan) {
-            alert("Semua kolom harus diisi!");
-            return;
+        <input type="text" id="name" placeholder="Nama" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <textarea id="message" placeholder="Pesan" rows="4" required></textarea>
+        <button onclick="sendRequest()">Kirim</button>
+    </div>
+    <script>
+        function sendRequest() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let message = document.getElementById("message").value;
+            
+            if (!name || !email || !message) {
+                alert("Harap isi semua kolom!");
+                return;
+            }
+            
+            let mailtoLink = `mailto:admin@domain.com?subject=Request%20Fitur&body=Nama:%20${name}%0AEmail:%20${email}%0APesan:%20${message}`;
+            window.location.href = mailtoLink;
         }
-        
-        const mailtoLink = `mailto:kenzzudahjago@gmail.com?subject=Request Fitur dari ${encodeURIComponent(nama)}&body=${encodeURIComponent("Nama: " + nama + "\nEmail: " + email + "\n\nPesan:\n" + message)}`;
-        window.location.href = mailtoLink;
-    }
-</script>
-
+    </script>
 </body>
 </html>
